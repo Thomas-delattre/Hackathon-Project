@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title  %}Modifier Article{% endblock %}
+{% block body %}
+{% include 'commons/_header.html.twig' %}
+    <h1>Modifier l'article {{ moto.id }}</h1>
+    <div>
+        {{ form_start(motoForm) }}
+        {{ form_widget(motoForm) }}
+        {{ form_end(motoForm) }}
+    </div>
+{% endblock %}

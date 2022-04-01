@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title 'Nouvel Article ' %}
+
+{% block body %}
+    <h1>Ajout d'un nouvel article</h1>
+    <div class="container-form-create">
+        {{ form_start(motoForm) }}
+        {{ form_widget(motoForm) }}
+        {{ form_end(motoForm) }}
+    </div>
+{% endblock %}

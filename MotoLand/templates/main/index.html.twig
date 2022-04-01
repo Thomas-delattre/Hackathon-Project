@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les fous du guidon ! {% endblock %}
+{% block body %}
+    {% include 'commons/_header.html.twig' %}
+    <div id="titre-home">
+        <h1>Les Fous du Guidon</h1>
+    </div>
+<h2>{{ pluralize(motos|length, 'moto') }}</h2>
+    {% for moto in motos %}
+    <div class="container-info">
+        <h2><a href="{{ path('app_main_show', {id: moto.id}) }}">{{ moto.title }}</a></h2>
+        <p>{{ moto.description }}</p>
+        <p>{{ moto.createdAt|format_datetime('full', 'none', locale='fr') }}</p>
+    </div>
+    {% endfor %}
+{% endblock %}

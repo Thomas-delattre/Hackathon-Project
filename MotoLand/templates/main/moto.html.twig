@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block title moto.title %}
+{% block body %}
+<div>
+    <h2>{{ moto.title }}</h2>
+    <p>{{ moto.description }}</p>
+</div>
+    <a href="{{ path('app_moto_edit', {id: moto.id}) }}">Modifier</a>
+    <a href="{{ path('app_home') }}">Retour</a>
+    <form method="post" action="{{ path('app_moto_delete', {'id': moto.id}) }}" onsubmit="return confirm('êtes-vous sûr ?');">
+        <input type="hidden" name="_token" value="{{ csrf_token('moto_delete' ~ moto.id) }}">
+        <button class="btn">Delete</button>
+    </form>
+{% endblock %}
