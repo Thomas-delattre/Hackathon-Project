@@ -2,31 +2,30 @@
 
 namespace App\Repository;
 
-use App\Entity\Moto;
+use App\Entity\Media;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
-use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @method Moto|null find($id, $lockMode = null, $lockVersion = null)
- * @method Moto|null findOneBy(array $criteria, array $orderBy = null)
- * @method Moto[]    findAll()
- * @method Moto[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Media|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Media|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Media[]    findAll()
+ * @method Media[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class MotoRepository extends ServiceEntityRepository
+class MediaRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Moto::class);
+        parent::__construct($registry, Media::class);
     }
 
     /**
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function add(Moto $entity, bool $flush = true): void
+    public function add(Media $entity, bool $flush = true): void
     {
         $this->_em->persist($entity);
         if ($flush) {
@@ -38,7 +37,7 @@ class MotoRepository extends ServiceEntityRepository
      * @throws ORMException
      * @throws OptimisticLockException
      */
-    public function remove(Moto $entity, bool $flush = true): void
+    public function remove(Media $entity, bool $flush = true): void
     {
         $this->_em->remove($entity);
         if ($flush) {
@@ -46,9 +45,8 @@ class MotoRepository extends ServiceEntityRepository
         }
     }
 
-
     // /**
-    //  * @return Moto[] Returns an array of Moto objects
+    //  * @return Media[] Returns an array of Media objects
     //  */
     /*
     public function findByExampleField($value)
@@ -65,7 +63,7 @@ class MotoRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Moto
+    public function findOneBySomeField($value): ?Media
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

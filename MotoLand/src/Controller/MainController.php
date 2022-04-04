@@ -2,8 +2,11 @@
 
 namespace App\Controller;
 
+
+use App\Entity\Media;
 use App\Entity\Moto;
 use App\Form\MotoType;
+use App\Repository\MediaRepository;
 use App\Repository\MotoRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,7 +20,7 @@ class MainController extends AbstractController
     public function index(MotoRepository $motoRepository): Response
     {
         //recove the data in the data base with method findBy
-        $motos = $motoRepository->findBy([], ['createdAt' => 'DESC']);
+        $motos = $motoRepository->findBy([], ['id' => 'DESC']);
         // return to user view
         return $this->render('main/index.html.twig', [
             'controller_name' => 'MainController',
@@ -26,26 +29,35 @@ class MainController extends AbstractController
     }
 
     #[Route ('/main/create', name: 'app_main_addMoto', methods: ['GET', 'POST'])]
-    public function addMoto(MotoRepository $motoRepository, Request $request, EntityManagerInterface $entityManager): Response
+    public function addMoto(MotoRepository $motoRepository, Request $request): Response
     {
         $moto = new Moto();
         $dateNow = new \DateTime('now');
-        //creation form
+        $media = new Media();
+        //creation du form
         $form = $this->createForm(MotoType::class, $moto);
         $form->handleRequest($request);
-        //form check
+        //On verifie si le formulaire est remplit et valide
         if ($form->isSubmitted() && $form->isValid()) {
+            $file = $form->get('media')->getData();
+            //md5 (uniqid) sert à crypté le nom de la photo et à le rendre unique
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            // Envoie l'image dans le dossier Upload_directory grâce à la commande pathUploadDirectory qui est dans le fichier services.yaml
+            $file->move($this->getParameter('pathUploadDirectory'), $fileName);
+            $media
+                ->setName($fileName)
+                ->setAlt('Photo moto');
+            $moto->setMedia($media);
             $moto->setCreatedAt($dateNow);
             $motoRepository->add($moto);
-            $entityManager->persist($moto);
-            $entityManager->flush();
-            $this->addFlash('succes', 'L\'artcile a bien été ajouté !');
+            $this->addFlash('success', 'L\'artcile a bien été ajouté !');
             return $this->redirectToRoute('app_home');
         }
         return $this->render('main/create.html.twig', [
-            'motoForm' => $form->createView()
+            'motoForm' => $form->createView(),
         ]);
     }
+
 
     #[Route('/main/{id}', name: 'app_main_show', methods: ['GET'])]
     public function show(Moto $moto): Response
@@ -77,7 +89,7 @@ class MainController extends AbstractController
         if ($this->isCsrfTokenValid('moto_delete'.$moto->getId(), $request->request->get('_token'))){
             $motoRepository->remove($moto);
 
-            $this->addFlash('succes', 'L\'artcile a bien été supprimé !');
+            $this->addFlash('success', 'L\'artcile a bien été supprimé !');
         }
         return $this->redirectToRoute('app_home');
     }

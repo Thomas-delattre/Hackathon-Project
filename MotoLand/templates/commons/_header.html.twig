@@ -1,9 +1,47 @@
 <header>
-   <div>
-       <ul>
-           <li><a href="{{ path('app_home') }}">Accueil</a></li>
-           <li><a href="{{ path('app_main_addMoto') }}">Ajouter une moto</a></li>
-           <li><a href="#">login</a></li>
-       </ul>
-   </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('app_home') }}"><img src="{{ asset('assets/images/monlogo.jpg') }}" id="logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="{{ path('app_home') }}">Accueil
+                        <span class="visually-hidden">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_main_addMoto') }}">Ajout d'un article</a>
+                </li>
+    <h1 class="span loader">
+        <span class='m'>L</span>
+        <span class='m'>E</span>
+        <span class='m'>S</span>
+        <span class='m'>&nbsp;</span>
+        <span class='m'>F</span>
+        <span class='m'>O</span>
+        <span class='m'>U</span>
+        <span class='m'>S</span>
+        <span class='m'>&nbsp;</span>
+        <span class='m'>D</span>
+        <span class='m'>U</span>
+        <span class='m'>&nbsp;</span>
+        <span class='m'>G</span>
+        <span class='m'>U</span>
+        <span class='m'>I</span>
+        <span class='m'>D</span>
+        <span class='m'>O</span>
+        <span class='m'>N</span>
+    </h1>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_login') }}">Déconnexion</a>
+                </li>
+    <h3>Bordeaux Club</h3>
+            </ul>
+        </div>
+    </div>
+</nav>
 </header>

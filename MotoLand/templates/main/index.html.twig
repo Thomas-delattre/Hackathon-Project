@@ -3,15 +3,27 @@
 {% block title %}Les fous du guidon ! {% endblock %}
 {% block body %}
     {% include 'commons/_header.html.twig' %}
-    <div id="titre-home">
-        <h1>Les Fous du Guidon</h1>
-    </div>
-<h2>{{ pluralize(motos|length, 'moto') }}</h2>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+    <h2>{{ pluralize(motos|length, 'article') }}</h2>
     {% for moto in motos %}
-    <div class="container-info">
-        <h2><a href="{{ path('app_main_show', {id: moto.id}) }}">{{ moto.title }}</a></h2>
-        <p>{{ moto.description }}</p>
-        <p>{{ moto.createdAt|format_datetime('full', 'none', locale='fr') }}</p>
-    </div>
+<ul class="card-list">
+    <li class="card">
+        <a class="card-image" href="{{ path('app_main_show', {id: moto.id}) }}">
+            <img src="{{ asset('upload_directory/'~ moto.media.name) }}" alt="{{ moto.media.alt}}" />
+        </a>
+        <a class="card-description" href="https://michellezauner.bandcamp.com/album/psychopomp-2" target="_blank">
+            <h5>{{ moto.title }}</h5>
+            <p>{{ moto.description }}</p>
+            <p class="text-muted">{{ moto.createdAt|format_datetime('full','none',locale='fr') }}</p>
+        </a>
+    </li>
+</ul>
     {% endfor %}
 {% endblock %}

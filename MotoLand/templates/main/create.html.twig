@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block title 'Nouvel Article ' %}
-
 {% block body %}
-    <h1>Ajout d'un nouvel article</h1>
+ {% include 'commons/_header.html.twig' %}
+    <h1 id="titre-create">Ajout d'un nouvel article</h1>
     <div class="container-form-create">
         {{ form_start(motoForm) }}
         {{ form_widget(motoForm) }}

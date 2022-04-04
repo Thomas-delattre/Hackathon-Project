@@ -5,7 +5,7 @@ namespace App\Entity;
 use App\Repository\MotoRepository;
 use Doctrine\ORM\Mapping as ORM;
 
-#[ORM\Table(name: "bikes")]
+
 #[ORM\HasLifecycleCallbacks]
 #[ORM\Entity(repositoryClass: MotoRepository::class)]
 class Moto
@@ -23,6 +23,12 @@ class Moto
 
     #[ORM\Column(type: 'date')]
     private ?\DateTimeInterface $createdAt;
+
+    #[ORM\OneToOne(targetEntity: Media::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private $media;
+
+
 
 
 
@@ -59,13 +65,27 @@ class Moto
     {
         return $this->createdAt;
     }
-
+    //#[ORM\PostPersist]
     public function setCreatedAt(\DateTimeInterface $createdAt): self
     {
         $this->createdAt = $createdAt;
 
         return $this;
     }
+
+    public function getMedia(): ?Media
+    {
+        return $this->media;
+    }
+
+    public function setMedia(?Media $media): self
+    {
+        $this->media = $media;
+
+        return $this;
+    }
+
+
 
 
 }

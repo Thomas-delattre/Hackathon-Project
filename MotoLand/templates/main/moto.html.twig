@@ -1,7 +1,10 @@
 {% extends 'base.html.twig' %}
 {% block title moto.title %}
 {% block body %}
+ {% include 'commons/_header.html.twig' %}
 <div>
+    <div><img src="{{ asset('upload_directory/'~ moto.media.name
+        ) }}" alt="{{ moto.media.alt|default('') }}"></div>
     <h2>{{ moto.title }}</h2>
     <p>{{ moto.description }}</p>
 </div>
