@@ -3,10 +3,11 @@
 {% block body %}
 {% block title  %}Modifier Article{% endblock %}
 {% include 'commons/_header.html.twig' %}
-    <h1>Modifier l'article {{ moto.id }}</h1>
+    <h1>Modifier l'article {{ moto.title }}</h1>
     <div>
         {{ form_start(motoForm) }}
         {{ form_widget(motoForm) }}
         {{ form_end(motoForm) }}
     </div>
+    {% include 'commons/_footer.html.twig' %}
 {% endblock %}

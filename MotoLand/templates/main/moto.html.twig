@@ -3,15 +3,20 @@
 {% block body %}
  {% include 'commons/_header.html.twig' %}
 <div>
-    <div><img src="{{ asset('upload_directory/'~ moto.media.name
-        ) }}" alt="{{ moto.media.alt|default('') }}"></div>
-    <h2>{{ moto.title }}</h2>
-    <p>{{ moto.description }}</p>
+    <div class="img-moto">
+        <img src="{{ asset('upload_directory/'~ moto.media.name
+        ) }}" alt="{{ moto.media.alt|default('') }}" id="img-moto">
+    </div>
+    <h2 id="title-moto">{{ moto.title }}</h2>
+    <p id="desc-moto">{{ moto.description }}</p>
 </div>
-    <a href="{{ path('app_moto_edit', {id: moto.id}) }}">Modifier</a>
-    <a href="{{ path('app_home') }}">Retour</a>
+<div class="btn-group" role="group">
+    <a href="{{ path('app_moto_edit', {id: moto.id}) }}"><button type="button" class="btn btn-dark">Modifier</button></a>
+    <a href="{{ path('app_home') }}"><button type="button" class="btn btn-dark">Retour</button></a>
     <form method="post" action="{{ path('app_moto_delete', {'id': moto.id}) }}" onsubmit="return confirm('êtes-vous sûr ?');">
         <input type="hidden" name="_token" value="{{ csrf_token('moto_delete' ~ moto.id) }}">
-        <button class="btn">Delete</button>
+        <button class="btn btn-warning">Delete</button>
     </form>
+</div>
+    {% include 'commons/_footer.html.twig' %}
 {% endblock %}
