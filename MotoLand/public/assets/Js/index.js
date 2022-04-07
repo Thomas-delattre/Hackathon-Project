@@ -127,4 +127,3 @@ class NavigationPage {
     }
 }
 
-new NavigationPage();

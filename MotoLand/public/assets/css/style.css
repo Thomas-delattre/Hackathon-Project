@@ -221,7 +221,34 @@ section{
     margin: 40px;
     font-family: 'Permanent Marker', cursive;
     text-align: center;
+    font-size: 2rem;
 
 }
+#backToTop {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background: none;
+    color: #26272B ;
+    cursor: pointer;
+    font-size: 2rem;
+    mix-blend-mode: difference;
+    transform: rotate(180deg);
+}
+#backToTop:hover {
+     transition: 0.3s ease-in;
+ //transform: translateY(-1px);
+ }
+
+/*@media (max-width: 376px){*/
+/*    #backToTop{*/
+/*        opacity: 0;*/
+
+/*    }*/
+/*}*/
 
 

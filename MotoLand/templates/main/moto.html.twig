@@ -2,6 +2,7 @@
 {% block title moto.title %}
 {% block body %}
  {% include 'commons/_header.html.twig' %}
+    <button id="backToTop" title="Go to top"><img src="{{ asset('assets/icons/arrow.svg') }}" alt="icone fleche"></button>
 <div>
     <div class="img-moto">
         <img src="{{ asset('upload_directory/'~ moto.media.name
@@ -11,11 +12,13 @@
     <p id="desc-moto">{{ moto.description }}</p>
 </div>
 <div class="btn-group" role="group">
+    {% if is_granted('ROLE_ADMIN') %}
     <a href="{{ path('app_moto_edit', {id: moto.id}) }}"><button type="button" class="btn btn-dark">Modifier</button></a>
-    <a href="{{ path('app_home') }}"><button type="button" class="btn btn-dark">Retour</button></a>
     <form method="post" action="{{ path('app_moto_delete', {'id': moto.id}) }}" onsubmit="return confirm('êtes-vous sûr ?');">
         <input type="hidden" name="_token" value="{{ csrf_token('moto_delete' ~ moto.id) }}">
-        <button class="btn btn-warning">Delete</button>
+        <button class="btn btn-warning">Supprimer</button>
+        {% endif %}
+    <a href="{{ path('app_home') }}"><button type="button" class="btn btn-dark">Retour</button></a>
     </form>
 </div>
     {% include 'commons/_footer.html.twig' %}

@@ -6,8 +6,20 @@
     <h1 id="titre-create">Ajout d'un nouvel article</h1>
     <div class="container-form-create">
         {{ form_start(motoForm) }}
-        {{ form_widget(motoForm) }}
-        {{ form_end(motoForm) }}
+        <div class="form-group">
+            {{ form_label(motoForm.title) }}
+        {{ form_widget(motoForm.title, {'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(motoForm.description) }}
+            {{ form_widget(motoForm.description, {'attr':{'class':'form-control'}}) }}
+        </div>
+        <div class="form-group">
+            {{ form_label(motoForm.media) }}
+            {{ form_widget(motoForm.media, {'attr':{'class':'form-control'}}) }}
+        </div>
     </div>
+
+        {{ form_end(motoForm) }}
     {% include 'commons/_footer.html.twig' %}
 {% endblock %}

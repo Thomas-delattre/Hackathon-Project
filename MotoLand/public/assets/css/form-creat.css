@@ -1,34 +1,28 @@
-.container-form-create {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 .required{
-    /*margin-right: 15px;*/
     margin-bottom: 20px;
 }
 #moto_title{
     border-radius: 10px;
     margin-bottom: 30px;
     width: 400px;
-    margin-left: 50px;
 }
 #moto_description{
     border-radius: 10px;
     /*margin-bottom: 30px;*/
     margin-left: 5px;
     width: 400px;
-    min-height: 400px;
+    min-height: 250px;
     padding: 5px;
+    resize: none;
+    margin-bottom: 30px;
 }
 #moto_media{
     border-radius: 10px;
     margin-bottom: 30px;
-    margin-left: 40px;
+    background-color: #26272B;
+    color: white;
 
-}
-#file-upload-button{
-    border-radius: 10px;
 }
 #moto_Ajouter{
     padding: 0px 10px 0 10px;

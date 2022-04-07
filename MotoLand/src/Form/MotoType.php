@@ -41,7 +41,7 @@ class MotoType extends AbstractType
                 ]
             ])
             ->add('Ajouter', SubmitType::class,[
-                'label' => 'Go !!! '
+                'label' => 'Go ! '
             ])
         ;
     }

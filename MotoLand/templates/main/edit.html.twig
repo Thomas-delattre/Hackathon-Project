@@ -6,7 +6,21 @@
     <h1>Modifier l'article {{ moto.title }}</h1>
     <div>
         {{ form_start(motoForm) }}
-        {{ form_widget(motoForm) }}
+        <div class="container-form-create">
+            {{ form_start(motoForm) }}
+            <div class="form-group">
+                {{ form_label(motoForm.title) }}
+                {{ form_widget(motoForm.title, {'attr':{'class':'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(motoForm.description) }}
+                {{ form_widget(motoForm.description, {'attr':{'class':'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(motoForm.media) }}
+                {{ form_widget(motoForm.media, {'attr':{'class':'form-control'}}) }}
+            </div>
+        </div>
         {{ form_end(motoForm) }}
     </div>
     {% include 'commons/_footer.html.twig' %}

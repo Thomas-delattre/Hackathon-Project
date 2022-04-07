@@ -1,9 +1,7 @@
 {% extends 'base.html.twig' %}
-
 {% block title %}Les fous du guidon ! {% endblock %}
 {% block body %}
     {% include 'commons/_header.html.twig' %}
-
     {% for label, messages in app.flashes %}
         {% for message in messages %}
             <div class="alert alert-{{ label }}" role="alert">
@@ -11,16 +9,18 @@
             </div>
         {% endfor %}
     {% endfor %}
+    <button id="backToTop" title="Go to top"><img src="{{ asset('assets/icons/arrow.svg') }}" alt="icone fleche"></button>
     <section>
         <div class="text-container">
         <p>Voyager à moto, c’est une expérience unique. C’est le meilleur moyen de s’immiscer dans tous les paysages traversés, de ressentir les variations de températures,
         profiter des odeurs, des intempéries… C’est parfois dur, mais c’est ce qui rend l’expérience inoubliable.
-        Alors, c’est sûr, ça manque une peu de confort, mais si pour toi, voyage = confort, il y a une super invention : le Club Med.</p>
+        Alors, c’est sûr, ça manque un peu de confort, mais si pour toi, voyage = confort, il y a une super invention : le Club Med.</p>
     </div>
     <div class="img-container-home">
     <img src="{{ asset('assets/images/burn.jpg') }}" id="img-home">
     </div>
     </section>
+    {% if is_granted('ROLE_USER') %}
     <h2 id="h2-nb-articles">{{ pluralize(motos|length, 'Article') }}</h2>
     {% for moto in motos %}
         <ul class="card-list">
@@ -28,14 +28,15 @@
            <a class="card-image" href="{{ path('app_main_show', {id: moto.id}) }}">
             <img src="{{ asset('upload_directory/'~ moto.media.name) }}" alt="{{ moto.media.alt}}" />
            </a>
+            <p class="text-muted">{{ moto.createdAt|format_datetime('full','none',locale='fr') }}</p>
            <a class="card-description" href="{{ path('app_main_show', {id: moto.id}) }}" target="_blank">
             <h5>{{ moto.title }}</h5>
             <p>{{ moto.description }}</p>
-            <p class="text-muted">{{ moto.createdAt|format_datetime('full','none',locale='fr') }}</p>
            </a>
         </li>
       </ul>
 
     {% endfor %}
+    {% endif %}
     {% include 'commons/_footer.html.twig' %}
 {% endblock %}
